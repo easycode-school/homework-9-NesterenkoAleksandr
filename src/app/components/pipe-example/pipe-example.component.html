@@ -1,0 +1,34 @@
+<h2>Custom date pipe</h2>
+<p>{{ date | customDate }}</p>
+
+<h2>Sort by property name pipe</h2>
+<ul>
+  <li *ngFor="let user of (users | sortBy: 'name': 'desc')">
+    {{ user.name }}
+    {{ user.age }}
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
