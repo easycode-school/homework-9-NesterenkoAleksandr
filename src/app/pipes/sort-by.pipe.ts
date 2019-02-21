@@ -12,17 +12,16 @@ export class SortByPipe implements PipeTransform {
    * @param prop - наименование свойства для сортировки
    * @param direction - направление сортировки (ASC, DESC)
    */
-  // tslint:disable-next-line:ban-types
-  transform(value: Array<Object>, prop: string, direction: string = 'ASC'): Array<Object> {
-    value = value.sort((a, b) => {
-      if (a[prop] > b[prop]) {
-        return 1;
-      }
-      if (a[prop] < b[prop]) {
-        return -1;
-      }
-      return 0;
-    });
-    return direction.toUpperCase() === 'DESC' ? value.reverse() : value;
+  transform(value: Array<object>, prop: string, direction: string = 'ASC'): Array<object> {
+    direction = direction.toUpperCase();
+
+    // Проверка входящих параметров
+    if (!prop || !(direction === 'ASC' || direction === 'DESC')) {
+      return value;
+    }
+
+    value = value.slice().sort((a, b) =>  a[prop] > b[prop] ? 1 : (a[prop] < b[prop] ? -1 : 0));
+
+    return direction === 'DESC' ? value.reverse() : value;
   }
 }
