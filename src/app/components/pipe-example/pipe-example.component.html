@@ -1,0 +1,66 @@
+
+<h2>Custom date pipe</h2>
+<ul class="list-group my-3">
+  <li class="list-group-item">
+      {{ now | date: 'dd.MM.yyyy hh:mm:ss'}} - {{ justNow | date: 'dd.MM.yyyy hh:mm:ss'}} -> {{ justNow | customDate }}
+  </li>
+  <li class="list-group-item">
+      {{ now | date: 'dd.MM.yyyy hh:mm:ss'}} - {{ more5Minutes | date: 'dd.MM.yyyy hh:mm:ss'}} -> {{ more5Minutes | customDate }}
+  </li>
+  <li class="list-group-item">
+      {{ now | date: 'dd.MM.yyyy hh:mm:ss'}} - {{ more1Hours | date: 'dd.MM.yyyy hh:mm'}} -> {{ more1Hours | customDate }}
+  </li>
+  <li class="list-group-item">
+      {{ now | date: 'dd.MM.yyyy hh:mm:ss'}} - {{ more1Days | date: 'dd.MM.yyyy hh:mm'}} -> {{ more1Days | customDate }}
+  </li>
+</ul>
+
+<h2>Sort by property name pipe</h2>
+<form #formSortFilter='ngForm' class="form-inline my-3">
+  <div class="form-group">
+    <label for="selectSortBy">Sort by:</label>
+    <select [(ngModel)]='sortBy' #selectSortBy="ngModel" name="selectSortBy" id="selectSortBy" class="form-control ml-3">
+        <option value="name" >Name</option>
+        <option value="age">Age</option>
+    </select>
+  </div>
+  <div class="form-group ml-3">
+    <label for="selectSortDirection">Direction:</label>
+    <select [(ngModel)]='sortDirection' #selectSortDirection="ngModel" name="selectSortDirection" id="selectSortDirection" class="form-control ml-3">
+      <option value="unsorted">Unsorted</option>
+      <option value="asc" >Asc</option>
+      <option value="desc">Desc</option>
+    </select>
+  </div>
+</form>
+<ul class="list-group">
+  <li *ngFor="let user of (users | sortBy: sortBy: sortDirection)" class="list-group-item">
+    {{ user.name }}
+    {{ user.age }}
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
